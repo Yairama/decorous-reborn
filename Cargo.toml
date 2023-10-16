@@ -1,8 +1,25 @@
-[package]
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
 name = "decorous-reborn"
-version = "0.1.0"
+version = "0.5.0"
+license = "AGPL-3.0 license"
+description = "Decorouuuusss uwu"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
+[workspace.dependencies]
+bevy_editor_pls = { version = "0.5.0", path = "crates/bevy_editor_pls" }
+bevy_editor_pls_core = { version = "0.5.0", path = "crates/bevy_editor_pls_core" }
+bevy_editor_pls_default_windows = { version = "0.5.0", path = "crates/bevy_editor_pls_default_windows" }
+decorous = {version = "0.5.0", path="crates/decorous"}
+
+egui = "0.23.0"
+bevy-inspector-egui = "0.20"
+egui-gizmo = "0.12"
+
+[profile.dev.package."*"]
+opt-level = 2
