@@ -9,7 +9,7 @@ readme.workspace = true
 
 [dependencies]
 bevy_editor_pls_core.workspace = true
-ui_windows = { workspace = true, optional = true }
+ui_windows.workspace = true
 bevy = { version = "0.11", default-features = false}
 egui.workspace = true
 egui-gizmo.workspace = true

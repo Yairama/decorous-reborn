@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use bevy_inspector_egui;
+use ui_setup::EditorPlugin;
 
 fn main() {
     App::new()
@@ -16,7 +16,7 @@ fn main() {
             }),
             ..default()
         }))
-        .add_plugins(bevy_inspector_egui::bevy_egui::EguiPlugin)
+        .add_plugins(EditorPlugin::new())
         .add_systems(Update, bevy::window::close_on_esc)
         .add_systems(Startup, simple_setup)
         .run();

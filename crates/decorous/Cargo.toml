@@ -12,3 +12,5 @@ readme.workspace = true
 [dependencies]
 bevy = { version = "0.11" }
 bevy-inspector-egui.workspace = true
+ui_setup.workspace = true
+ui_windows.workspace = true
