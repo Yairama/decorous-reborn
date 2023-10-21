@@ -1,3 +1,6 @@
+mod math;
+use math::analytic_geometry;
+use bevy_infinite_grid::{InfiniteGridPlugin, InfiniteGridBundle, InfiniteGrid};
 use bevy::prelude::*;
 use ui_setup::EditorPlugin;
 
@@ -12,6 +15,7 @@ fn main() {
             ..default()
         }))
         .add_plugins(EditorPlugin::new())
+        .add_plugins(InfiniteGridPlugin)
         .add_systems(Update, bevy::window::close_on_esc)
         .add_systems(Startup, simple_setup)
         .run();
@@ -25,6 +29,14 @@ fn simple_setup(
 ) {
     commands.spawn(Camera3dBundle {
         transform: Transform::from_xyz(0., 1.5, 6.).looking_at(Vec3::ZERO, Vec3::Y),
+        ..default()
+    });
+
+    commands.spawn(InfiniteGridBundle {
+        grid: InfiniteGrid {
+            // shadow_color: None,
+            ..default()
+        },
         ..default()
     });
 
