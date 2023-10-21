@@ -8,7 +8,7 @@ use bevy_inspector_egui::bevy_egui::{egui, EguiContext};
 use egui_dock::{NodeIndex, SurfaceIndex, TabBarStyle, TabIndex};
 use indexmap::IndexMap;
 
-use crate::editor_window::{EditorWindow, EditorWindowContext};
+use crate::editor_window::{EditorWindow, EditorWindowContext, MenuBarWindow};
 
 #[non_exhaustive]
 #[derive(Event)]
@@ -113,6 +113,9 @@ struct EditorWindowData {
     viewport_toolbar_ui_fn: UiFn,
     viewport_ui_fn: UiFn,
     default_size: (f32, f32),
+    collapsible: bool,
+    resizable: bool,
+    menu_bar_window: MenuBarWindow
 }
 
 #[derive(Resource)]
@@ -249,6 +252,9 @@ impl Editor {
             viewport_ui_fn,
             name: W::NAME,
             default_size: W::DEFAULT_SIZE,
+            collapsible: W::COLLAPSIBLE,
+            resizable: W::RESIZABLE,
+            menu_bar_window: W::MENU_BAR
         };
         if self.windows.insert(type_id, data).is_some() {
             panic!(
@@ -365,23 +371,25 @@ impl Editor {
     ) {
         egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
             let bar_response = egui::menu::bar(ui, |ui| {
-                // if !self.always_active && play_pause_button(self.active, ui).clicked() {
-                //     self.active = !self.active;
-                //     editor_events.send(EditorEvent::Toggle {
-                //         now_active: self.active,
-                //     });
-                // }
                 self.active = true;
+                egui::widgets::global_dark_light_mode_switch(ui);
 
-                ui.menu_button("Open window", |ui| {
-                    for (&_, window) in self.windows.iter() {
-                        let cx = EditorWindowContext {
-                            window_states: &mut self.window_states,
-                            internal_state,
-                        };
-                        (window.menu_ui_fn)(world, cx, ui);
-                    }
-                });
+                let mut run_menu = |menu_name: &str, filter: MenuBarWindow| {
+                    ui.menu_button(menu_name, |ui| {
+                        for (&_, window) in self.windows.iter().filter(|(_, data)| data.menu_bar_window == filter) {
+                            let cx = EditorWindowContext {
+                                window_states: &mut self.window_states,
+                                internal_state,
+                            };
+                            (window.menu_ui_fn)(world, cx, ui);
+                        }
+                    });
+                };
+
+                run_menu("File", MenuBarWindow::File);
+                run_menu("Edit", MenuBarWindow::Edit);
+                run_menu("About", MenuBarWindow::About);
+                run_menu("Open window", MenuBarWindow::NoMenuBar);
             })
             .response
             .interact(egui::Sense::click());
@@ -458,6 +466,8 @@ impl Editor {
             if let Some(initial_position) = floating_window.initial_position {
                 window = window.default_pos(initial_position - egui::Vec2::new(10.0, 10.0))
             }
+            // TODO: Try adding egui dock to can pin tabs
+
             window.show(ctx, |ui| {
                 self.editor_window_inner(world, internal_state, floating_window.window, ui);
                 ui.allocate_space(ui.available_size() - (5.0, 5.0).into());
@@ -563,12 +573,4 @@ impl egui_dock::TabViewer for TabViewer<'_> {
     fn clear_background(&self, tab: &Self::Tab) -> bool {
         !matches!(tab, TreeTab::GameView)
     }
-}
-
-fn play_pause_button(active: bool, ui: &mut egui::Ui) -> egui::Response {
-    let icon = match active {
-        true => "▶",
-        false => "⏸",
-    };
-    ui.add(egui::Button::new(icon).frame(false))
 }
