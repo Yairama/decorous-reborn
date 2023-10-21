@@ -3,6 +3,7 @@ use std::any::{Any, TypeId};
 use bevy::ecs::event::Events;
 use bevy::window::WindowMode;
 use bevy::{prelude::*, utils::HashMap};
+use bevy::a11y::accesskit::AriaCurrent::False;
 use bevy_inspector_egui::bevy_egui::{egui, EguiContext};
 use egui_dock::{NodeIndex, SurfaceIndex, TabBarStyle, TabIndex};
 use indexmap::IndexMap;
@@ -364,12 +365,13 @@ impl Editor {
     ) {
         egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
             let bar_response = egui::menu::bar(ui, |ui| {
-                if !self.always_active && play_pause_button(self.active, ui).clicked() {
-                    self.active = !self.active;
-                    editor_events.send(EditorEvent::Toggle {
-                        now_active: self.active,
-                    });
-                }
+                // if !self.always_active && play_pause_button(self.active, ui).clicked() {
+                //     self.active = !self.active;
+                //     editor_events.send(EditorEvent::Toggle {
+                //         now_active: self.active,
+                //     });
+                // }
+                self.active = true;
 
                 ui.menu_button("Open window", |ui| {
                     for (&_, window) in self.windows.iter() {

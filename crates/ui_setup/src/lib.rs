@@ -39,7 +39,7 @@ pub enum EditorWindowPlacement {
 /// fn main() {
 ///     App::new()
 ///         .add_plugins(DefaultPlugins)
-///         .add_plugin(EditorPlugin::new())
+///         .add_plugins(EditorPlugin::new())
 ///         .run();
 /// }
 /// ```
