@@ -1,26 +1,39 @@
+[package]
+name = "decorous"
+version = "0.1.0"
+edition = "2021"
+#repository.workspace = true
+description = "deco deco"
+readme = "README.md"
+
 [workspace]
 members = ["crates/*"]
 resolver = "2"
 
 [workspace.package]
 name = "decorous-reborn"
-version = "0.5.0"
+version = "0.1.0"
 license = "AGPL-3.0 license"
 description = "Decorouuuusss uwu"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [workspace.dependencies]
-bevy_editor_pls_core = { version = "0.5.0", path = "crates/bevy_editor_pls_core" }
-ui_windows = { version = "0.5.0", path="crates/ui_windows"}
-ui_setup = { version = "0.5.0", path="crates/ui_setup"}
-decorous = {version = "0.5.0", path="crates/decorous"}
+bevy = "0.11.3"
+bevy-inspector-egui = "0.20"
 
+[dependencies]
+bevy_editor_pls_core = { version = "0.5.0", path = "crates/bevy_editor_pls_core" }
 bevy = "0.11.3"
 egui = "0.23.0"
 bevy-inspector-egui = "0.20"
 egui-gizmo = "0.12"
-
-[profile.dev.package."*"]
-opt-level = 2
+polars = { version="0.33.2", features=["lazy", "strings"] }
+csv = "1.3.0"
+delaunator = "1.0.2"
+rfd = "0.12.1"
+dxf = { git = "https://github.com/Yairama/dxf-rs", branch = "main" }
+bevy_infinite_grid = { git = "https://github.com/ForesightMiningSoftwareCorporation/bevy_infinite_grid", branch = "main" }
+indexmap = "2"
+pretty-type-name = "1.0"
+bevy_mod_debugdump = "0.8"
+opener = "0.6.0"

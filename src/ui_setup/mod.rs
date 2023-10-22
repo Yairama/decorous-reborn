@@ -10,12 +10,12 @@ pub use bevy_editor_pls_core::egui_dock;
 pub use bevy_editor_pls_core::{editor, editor_window, AddEditorWindow};
 pub use egui;
 
-pub use ui_windows as default_windows;
+pub use crate::ui_windows as default_windows;
 
 /// Commonly used types and extension traits
 pub mod prelude {
-    pub use crate::{AddEditorWindow, EditorPlugin};
-    pub use ui_windows::scenes::NotInScene;
+    pub use bevy_editor_pls_core::{AddEditorWindow, EditorPlugin};
+    pub use crate::ui_windows::scenes::NotInScene;
 }
 
 /// Where to show the editor
@@ -94,17 +94,17 @@ impl Plugin for EditorPlugin {
 
         
         {
-            use ui_windows::add::AddWindow;
-            use ui_windows::assets::AssetsWindow;
-            use ui_windows::cameras::CameraWindow;
-            use ui_windows::debug_settings::DebugSettingsWindow;
-            use ui_windows::diagnostics::DiagnosticsWindow;
-            use ui_windows::gizmos::GizmoWindow;
-            use ui_windows::hierarchy::HierarchyWindow;
-            use ui_windows::inspector::InspectorWindow;
-            use ui_windows::renderer::RendererWindow;
-            use ui_windows::resources::ResourcesWindow;
-            use ui_windows::scenes::SceneWindow;
+            use crate::ui_windows::add::AddWindow;
+            use crate::ui_windows::assets::AssetsWindow;
+            use crate::ui_windows::cameras::CameraWindow;
+            use crate::ui_windows::debug_settings::DebugSettingsWindow;
+            use crate::ui_windows::diagnostics::DiagnosticsWindow;
+            use crate::ui_windows::gizmos::GizmoWindow;
+            use crate::ui_windows::hierarchy::HierarchyWindow;
+            use crate::ui_windows::inspector::InspectorWindow;
+            use crate::ui_windows::renderer::RendererWindow;
+            use crate::ui_windows::resources::ResourcesWindow;
+            use crate::ui_windows::scenes::SceneWindow;
 
             app.add_editor_window::<HierarchyWindow>();
             app.add_editor_window::<AssetsWindow>();

@@ -1,7 +1,7 @@
 pub mod camera_2d_panzoom;
 pub mod camera_3d_free;
 pub mod camera_3d_panorbit;
-use crate::scenes::NotInScene;
+use crate::ui_windows::scenes::NotInScene;
 
 use bevy::render::camera::RenderTarget;
 use bevy::render::view::RenderLayers;
@@ -15,7 +15,7 @@ use bevy_editor_pls_core::{
 use bevy_inspector_egui::egui;
 // use bevy_mod_picking::prelude::PickRaycastSource;
 
-use crate::hierarchy::{HideInEditor, HierarchyWindow};
+use crate::ui_windows::hierarchy::{HideInEditor, HierarchyWindow};
 
 use self::camera_3d_panorbit::PanOrbitCamera;
 

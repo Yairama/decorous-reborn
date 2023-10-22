@@ -1,6 +1,8 @@
+mod ui_setup;
+pub mod ui_windows;
 mod math;
-mod custom_meshes;
 mod files_manager;
+mod custom_meshes;
 
 use bevy_infinite_grid::{InfiniteGridPlugin, InfiniteGridBundle, InfiniteGrid};
 use bevy::prelude::*;

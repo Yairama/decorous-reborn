@@ -10,7 +10,8 @@ use bevy_editor_pls_core::editor_window::{EditorWindow, EditorWindowContext};
 use bevy_inspector_egui::egui;
 use indexmap::IndexMap;
 
-use crate::hierarchy::HierarchyWindow;
+use crate::ui_windows::hierarchy::HierarchyWindow;
+
 
 pub struct AddItem {
     name: Cow<'static, str>,
@@ -139,7 +140,7 @@ impl Default for AddWindowState {
 
         state.add(
             "NotInScene",
-            AddItem::component::<crate::scenes::NotInScene>(),
+            AddItem::component::<crate::ui_windows::scenes::NotInScene>(),
         );
 
         state.add("Core", AddItem::component::<Name>());

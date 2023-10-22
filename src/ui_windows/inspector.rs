@@ -95,7 +95,7 @@ fn add_ui(
         let layout = egui::Layout::top_down(egui::Align::Center).with_cross_justify(true);
         ui.with_layout(layout, |ui| {
             ui.menu_button("+", |ui| {
-                if let Some(add_item) = crate::add::add_ui(ui, add_window_state) {
+                if let Some(add_item) = crate::ui_windows::add::add_ui(ui, add_window_state) {
                     for entity in entities {
                         add_item.add_to_entity(world, *entity);
                     }

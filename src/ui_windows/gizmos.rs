@@ -9,7 +9,7 @@ use bevy_inspector_egui::{bevy_inspector::hierarchy::SelectedEntities, egui};
 use egui::Color32;
 use egui_gizmo::{GizmoMode, GizmoVisuals};
 
-use crate::{
+use crate::ui_windows::{
     cameras::{ActiveEditorCamera, CameraWindow, EditorCamera, EDITOR_RENDER_LAYER},
     hierarchy::HierarchyWindow,
 };

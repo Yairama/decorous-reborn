@@ -16,9 +16,9 @@ use bevy_editor_pls_core::{
 // use bevy_mod_picking::backends::egui::EguiPointer;
 // use bevy_mod_picking::prelude::{IsPointerEvent, PointerClick, PointerButton};
 
-use crate::add::{add_ui, AddWindow, AddWindowState};
-use crate::debug_settings::DebugSettingsWindow;
-use crate::inspector::{InspectorSelection, InspectorWindow};
+use crate::ui_windows::add::{add_ui, AddWindow, AddWindowState};
+use crate::ui_windows::debug_settings::DebugSettingsWindow;
+use crate::ui_windows::inspector::{InspectorSelection, InspectorWindow};
 
 #[derive(Component)]
 pub struct HideInEditor;

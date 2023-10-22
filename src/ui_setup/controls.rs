@@ -211,7 +211,7 @@ pub fn editor_controls_system(
         &mouse_input,
         &editor,
     ) {
-        if let Some(default_window) = editor.window_state_mut::<ui_windows::debug_settings::DebugSettingsWindow>() {
+        if let Some(default_window) = editor.window_state_mut::<crate::ui_windows::debug_settings::DebugSettingsWindow>() {
             default_window.pause_time = !default_window.pause_time;
         }
     }
@@ -234,7 +234,7 @@ pub fn editor_controls_system(
             &editor,
         ) {
             editor
-                .window_state_mut::<ui_windows::gizmos::GizmoWindow>()
+                .window_state_mut::<crate::ui_windows::gizmos::GizmoWindow>()
                 .unwrap()
                 .gizmo_mode = egui_gizmo::GizmoMode::Translate;
         }
@@ -245,7 +245,7 @@ pub fn editor_controls_system(
             &editor,
         ) {
             editor
-                .window_state_mut::<ui_windows::gizmos::GizmoWindow>()
+                .window_state_mut::<crate::ui_windows::gizmos::GizmoWindow>()
                 .unwrap()
                 .gizmo_mode = egui_gizmo::GizmoMode::Rotate;
         }
@@ -256,7 +256,7 @@ pub fn editor_controls_system(
             &editor,
         ) {
             editor
-                .window_state_mut::<ui_windows::gizmos::GizmoWindow>()
+                .window_state_mut::<crate::ui_windows::gizmos::GizmoWindow>()
                 .unwrap()
                 .gizmo_mode = egui_gizmo::GizmoMode::Scale;
         }
