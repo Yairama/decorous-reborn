@@ -19,6 +19,7 @@ use bevy_editor_pls_core::{
 use crate::ui_windows::add::{add_ui, AddWindow, AddWindowState};
 use crate::ui_windows::debug_settings::DebugSettingsWindow;
 use crate::ui_windows::inspector::{InspectorSelection, InspectorWindow};
+use crate::ui_windows::nodes_creator::NodesCreator;
 
 #[derive(Component)]
 pub struct HideInEditor;
@@ -29,6 +30,8 @@ impl EditorWindow for HierarchyWindow {
     const NAME: &'static str = "Hierarchy";
 
     fn ui(world: &mut World, mut cx: EditorWindowContext, ui: &mut egui::Ui) {
+        hierarchy_menu_bar(ui, world, &mut cx);
+
         let (hierarchy_state, inspector_state, add_state) =
             match cx.state_mut_triplet::<HierarchyWindow, InspectorWindow, AddWindow>() {
                 Some((a, b, c)) => (a, b, Some(c)),
@@ -69,6 +72,25 @@ impl EditorWindow for HierarchyWindow {
     }
 }
 
+fn hierarchy_menu_bar<'a>(ui: &mut egui::Ui, _world: &mut World, cx: &mut EditorWindowContext){
+    ui.separator();
+
+    egui::menu::bar(ui, |ui| {
+
+        ui.separator();
+
+        if ui.button("\u{2795}").clicked(){
+            cx.open_floating_window::<NodesCreator>();
+        }
+        ui.separator();
+        if ui.button("\u{27F2}").clicked(){
+            // TODO
+        }
+        ui.separator();
+    });
+
+    ui.separator();
+}
 fn clear_removed_entites(mut editor: ResMut<Editor>, entities: &Entities) {
     let state = editor.window_state_mut::<HierarchyWindow>().unwrap();
     state.selected.retain(|entity| entities.contains(entity));

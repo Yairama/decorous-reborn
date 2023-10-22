@@ -11,12 +11,7 @@ pub use bevy_editor_pls_core::{editor, editor_window, AddEditorWindow};
 pub use egui;
 
 pub use crate::ui_windows as default_windows;
-
-/// Commonly used types and extension traits
-pub mod prelude {
-    pub use bevy_editor_pls_core::{AddEditorWindow, EditorPlugin};
-    pub use crate::ui_windows::scenes::NotInScene;
-}
+use crate::ui_windows::nodes_creator::NodesCreator;
 
 /// Where to show the editor
 #[derive(Default)]
@@ -118,6 +113,7 @@ impl Plugin for EditorPlugin {
             app.add_editor_window::<SceneWindow>();
             app.add_editor_window::<GizmoWindow>();
             app.add_editor_window::<controls::ControlsWindow>();
+            app.add_editor_window::<NodesCreator>();
 
             app.add_plugins(bevy::pbr::wireframe::WireframePlugin);
 
