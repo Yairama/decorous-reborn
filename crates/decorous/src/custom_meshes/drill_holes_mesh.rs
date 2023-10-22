@@ -5,15 +5,9 @@ use std::ops::Sub;
 use bevy::prelude::*;
 use bevy::prelude::shape::Cylinder;
 
-
-
-
-
-
-
 use polars::prelude::*;
-use crate::ui::ui_file_loader::files::{CsvFile};
-use crate::utilities::math::analytic_geometry;
+use crate::files_manager::csv_parser::CsvFile;
+use crate::math::analytic_geometry;
 
 
 /// Saves the files

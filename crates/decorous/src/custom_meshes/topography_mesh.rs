@@ -9,7 +9,7 @@ use delaunator::{Point, triangulate};
 use bevy::render::mesh::{PrimitiveTopology};
 
 use csv::ReaderBuilder;
-use crate::ui::ui_file_loader::files::{CsvFile};
+use crate::files_manager::csv_parser::CsvFile;
 
 
 #[derive(Component)]

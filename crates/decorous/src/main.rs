@@ -1,5 +1,7 @@
 mod math;
-use math::analytic_geometry;
+mod custom_meshes;
+mod files_manager;
+
 use bevy_infinite_grid::{InfiniteGridPlugin, InfiniteGridBundle, InfiniteGrid};
 use bevy::prelude::*;
 use ui_setup::EditorPlugin;
