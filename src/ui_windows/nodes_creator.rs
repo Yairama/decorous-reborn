@@ -5,6 +5,7 @@ use crate::custom_meshes::topography_mesh::TopographyMesh;
 use crate::files_manager::csv_parser::CsvFile;
 use crate::files_manager::dxf_parser::DxfFile;
 use crate::files_manager::files_porperties::FileProperties;
+use crate::ui_windows::load_drills::LoadDrills;
 use crate::ui_windows::scenes::SceneWindow;
 
 #[derive(Default)]
@@ -83,7 +84,7 @@ fn make_ui(world: &mut World,
                                     }
                                 });
                             if ui.selectable_label(false,"\u{1F4A2} Drill Holes").clicked(){
-                                // TODO cx.open_floating_window::<LoadDrills>();
+                                cx.open_floating_window::<LoadDrills>();
                             }
                         });
                 });

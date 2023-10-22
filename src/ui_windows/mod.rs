@@ -9,5 +9,5 @@ pub mod inspector;
 pub mod renderer;
 pub mod resources;
 pub mod scenes;
-
 pub mod nodes_creator;
+pub mod load_drills;
